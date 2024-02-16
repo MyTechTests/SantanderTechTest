@@ -4,10 +4,17 @@ using Microsoft.Extensions.Configuration;
 
 namespace BestOfHackerNews.Core.Implementations;
 
+/// <summary>
+/// Validates api keys provided in the header of http requests
+/// </summary>
 public class ApiKeyValidator : IApiKeyValidator
 {
     private readonly Dictionary<string, string?> _apiKeys;
 
+    /// <summary>
+    /// Initialises the validator with known keys
+    /// </summary>
+    /// <param name="configuration"></param>
     public ApiKeyValidator(IConfiguration configuration)
     {
         var apiKeysSection = configuration.GetSection("ApiKeys");

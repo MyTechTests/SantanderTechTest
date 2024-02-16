@@ -11,18 +11,21 @@ Run the program, no argumants are required.  The swagger page should be loaded.
 If using the exe directly: run BestOfHackerNews.exe
 
 ##Calling the api
-Create an API key by generating a GUID and adding it to the environment variables as follows:
+Create an API key by generating a value and adding it to the environment variables as follows:
 
-    ApiKeys:XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX=Some client name
+    BOHN_ApiKeys:test=this is a test key
 
 This can alternatively be set by adding it to the appSettings.json file. e.g.:
   "ApiKeys": {
-    "CA7329D1-0395-49C2-913D-50251419E8D5": "A clients name"
+    "test": "this is a test key"
   }
 
 Call the api as follows:
-Using a client e.g. postman, set the header of a request with the value of "X-Api-Key" being the guid created above.
+The application is built with swagger UI support.  In the swagger page click "Authorise" and use the key defined e.g. "test".
+The api can be called via http as long as the header of a request is populated with the key "X-Api-Key" and the value being the key e.g. "test".
 
+##Overload protection
+The api will allow any number of clients to request the top n stories, but it will protect against the same client attempting a DoS attack.  Each client as identified by their host header is limited to 5 requests every 10 seconds.
 
 ##Assumptions
 The rest api is accessible i.e. no restrictions have been applied that would require firewall changes or urlacl.

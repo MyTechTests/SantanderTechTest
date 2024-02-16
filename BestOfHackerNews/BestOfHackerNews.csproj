@@ -7,10 +7,14 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <UserSecretsId>e2e699de-0ed9-4513-8da3-5b2799d0e318</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +22,18 @@
   </ItemGroup>
 
 	<ItemGroup>
-        <InternalsVisibleTo Include="BestOfHackerNews.Tests"/>
+        <InternalsVisibleTo Include="BestOfHackerNews.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\LICENSE.txt">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

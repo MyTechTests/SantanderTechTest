@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestOfHackerNews.Core", "Be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestOfHackerNews.Tests", "BestOfHackerNews.Tests\BestOfHackerNews.Tests.csproj", "{C80D6276-F5CC-4949-B954-D91C1F76C174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestOfHackerNews.Core.Tests", "BestOfHackerNews.Core.Tests\BestOfHackerNews.Core.Tests.csproj", "{82992A93-0218-4C3E-BDF7-10782A0635D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C80D6276-F5CC-4949-B954-D91C1F76C174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80D6276-F5CC-4949-B954-D91C1F76C174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80D6276-F5CC-4949-B954-D91C1F76C174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82992A93-0218-4C3E-BDF7-10782A0635D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82992A93-0218-4C3E-BDF7-10782A0635D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82992A93-0218-4C3E-BDF7-10782A0635D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82992A93-0218-4C3E-BDF7-10782A0635D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
