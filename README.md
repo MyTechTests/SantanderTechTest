@@ -2,8 +2,8 @@
 A RESTful API to retrieve the details of the best n stories from the Hacker News API (https://github.com/HackerNews/API), as determined by their score, where n is specified by the caller to the API.
 
 ## Prerequisites
-Docker
-.Net Core 8
+- Docker
+- .Net Core 8
 
 ## How to run
 If you are using visual studio then set BestOfHackerNews as the startup project.  You may need to set the following option in chrome for the swagger page to load: WebTransport Developer Mode
