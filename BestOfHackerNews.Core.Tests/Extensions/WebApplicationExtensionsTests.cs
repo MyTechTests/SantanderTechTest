@@ -2,6 +2,7 @@
 using BestOfHackerNews.Core.Interfaces;
 using BestOfHackerNews.Core.Records;
 using FluentAssertions;
+using Flurl.Http.Testing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.DependencyInjection;

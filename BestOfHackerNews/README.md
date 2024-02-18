@@ -29,13 +29,22 @@ The api will allow any number of clients to request the top n stories, but it wi
 
 ##Assumptions
 The rest api is accessible i.e. no restrictions have been applied that would require firewall changes or urlacl.
-The reference to Microsoft.AspNetCore in the BestOfHackerNews.Core library is deprecated but used by other micrtosoft packages.  Assumption here is that the packages using it will be updated in the future
 The package Microsoft.AspNetCore.RateLimiting is in RC, but has not changed in two years.  Assuming that this is now stable.
+If a news item is marked as "dead", then it is not deleted, just inactive and should be returned
+Once a story or comment has been retrieved, it may have changed the next time we need it (e.g. score value) so cannot be cached for long
+Where the website states "Want to know the total number of comments on an article? Traverse the tree and count", it also states that "descendants	In the case of stories or polls, the total comment count.".  Assuming the count for stories does not require traversal of the tree.
+
+##Known Issues
+The reference to Microsoft.AspNetCore in the BestOfHackerNews.Core library is deprecated but used by other microsoft packages.  Assumption here is that the packages using it will be updated in the future
 
 ##Further enhancements
 
+##Restrictions
+This service will support a large number of requests from multiple sources as identified by the host header in each request.  It will limit the number of requests for an individual caller to prevent DoS attack.
+An api key must be supplied in the x-api-key header value of each request as defined in "Calling the api" above.
+
 ## Contributing
-Pull requests are welcome. Please open an issue first to discuss what you would like to change.  Please also ensure that all affected tests are updated/added where requried.
+Pull requests are welcome. Please open an issue first to discuss what you would like to change.  Please also ensure that all affected tests are updated/added where required.
 
 ##Licence
 Chosen based on guidance from here: https://choosealicense.com/licenses/

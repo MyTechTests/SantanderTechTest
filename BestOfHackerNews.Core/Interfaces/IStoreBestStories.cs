@@ -2,7 +2,7 @@
 
 namespace BestOfHackerNews.Core.Interfaces;
 
-internal interface IStoreBestStories
+public interface IStoreBestStories
 {
     void Update(Story[] stories);
 }

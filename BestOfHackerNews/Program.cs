@@ -1,4 +1,5 @@
 using BestOfHackerNews.Core;
+using BestOfHackerNews.Core.Extensions;
 using Serilog;
 
 //By creating the builder here, we allow hosts to influence the setup as required.
@@ -10,7 +11,9 @@ builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfigura
 
 var app = builder.Build();
 
-await BohnServiceHostConfigurator.ConfigureApplication(app);
+BohnServiceHostConfigurator.ConfigureApplication(app);
+
+await app.BeginListeningToBohn();
 
 Log.Information("Service started at {@time}", DateTime.UtcNow);
 

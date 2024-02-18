@@ -20,7 +20,7 @@ public static class WebApplicationExtensions
     {
         var bestStoriesCollector = app.Services.GetRequiredService<ICollectBestStories>();
 
-        await bestStoriesCollector.BeginCollection();
+        await bestStoriesCollector.Start();
 
         return app;
     }

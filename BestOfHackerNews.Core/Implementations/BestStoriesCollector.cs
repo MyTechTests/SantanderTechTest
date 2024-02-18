@@ -1,66 +1,50 @@
-﻿using BestOfHackerNews.Core.Interfaces;
+﻿using BestOfHackerNews.Core.Interfaces.Config;
+using BestOfHackerNews.Core.Interfaces;
 using BestOfHackerNews.Core.Records;
-using System;
+using Serilog;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using Flurl.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.VisualBasic;
-using Polly;
-using Polly.Retry;
-using Serilog;
 
 namespace BestOfHackerNews.Core.Implementations;
 
+/// <summary>
+/// Monitors best story news items, calls the processor on those items and then updates the story store
+/// </summary>
 internal class BestStoriesCollector : ICollectBestStories, IDisposable
 {
-    private readonly IStoreBestStories _storyStore;
+    private BestStoriesCollectorConfig _bestStoriesCollectorConfig;
+    private readonly IBestStoriesCollectorConfigProvider _bestStoriesCollectorConfigProvider;
     private IDisposable _monitor;
-    private readonly AsyncRetryPolicy _policy;
-    private readonly string _bestStoriesUri;
-    private readonly TimeSpan _period;
+    private readonly IProvideBestStoriesAsHackerNewsItems _bestStoriesProvider;
 
-    public BestStoriesCollector(IStoreBestStories storyStore, IConfiguration config)
+    public BestStoriesCollector(
+        IProvideBestStoriesAsHackerNewsItems bestStoriesProvider,
+        IBestStoriesCollectorConfigProvider bestStoriesCollectorConfigProvider)
     {
-        _storyStore = storyStore;
-
-        var configurationSection = config.GetSection(Constants.Configuration.SectionName);
-        var retryCount = configurationSection.GetValue<int>(Constants.Configuration.NewsApiRetryCount);
-        var retryDelayMs = configurationSection.GetValue<int>(Constants.Configuration.NewsApiRetryDelayMs);
-        var checkIntervalInSeconds = configurationSection.GetValue<int>(Constants.Configuration.NewsApiCheckIntervalInSeconds);
-        _period = TimeSpan.FromSeconds(checkIntervalInSeconds);
-        _bestStoriesUri = configurationSection.GetValue<string>(Constants.Configuration.BestStoriesUri);
-
-        _policy = Policy
-            .Handle<Exception>()
-            .WaitAndRetryAsync(retryCount, count =>
-            {
-                Log.Warning("Retry attempt {count}", count);
-                return TimeSpan.FromMilliseconds(retryDelayMs);
-            });
+        _bestStoriesProvider = bestStoriesProvider;
+        _bestStoriesCollectorConfigProvider = bestStoriesCollectorConfigProvider;
     }
 
-    public async Task BeginCollection()
+    public async Task Start()
     {
         if (_monitor != null) throw new InvalidOperationException("Already initialised");
 
-        Log.Information("Beginning monitoring of best stories every {@interval} from: {uri}", _period, _bestStoriesUri);
+        _bestStoriesCollectorConfig = _bestStoriesCollectorConfigProvider.ReadConfig();
 
-        await GetBestStories();
+        await _bestStoriesProvider.GetBestStories();
 
-        _monitor = Observable
-            .Interval(_period)
-            .ObserveOn(NewThreadScheduler.Default)  //New thread protects from thread pool starvation caused by incoming requests
-            .Select(_ => Observable.FromAsync(() => GetBestStories()))
-            .Concat()
-            .Subscribe(); 
+        InitialiseMonitoring();
     }
 
-    private async Task GetBestStories(long _ = 0)
+    private void InitialiseMonitoring()
     {
-        Log.Information("Checking for updates from: {uri}", _bestStoriesUri);
-
-        var stories = await _bestStoriesUri.GetJsonAsync<int[]>();
+        Log.Information("Beginning monitoring of best stories every {@interval}", _bestStoriesCollectorConfig.CheckIntervalInSeconds);
+        _monitor = Observable
+            .Interval(_bestStoriesCollectorConfig.CheckIntervalInSeconds)
+            .ObserveOn(NewThreadScheduler.Default)  //New thread protects from thread pool starvation caused by incoming requests
+            .Select(_ => Observable.FromAsync(() => _bestStoriesProvider.GetBestStories()))
+            .Concat()
+            .Subscribe();
     }
 
     public void Dispose()

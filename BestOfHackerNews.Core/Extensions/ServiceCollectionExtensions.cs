@@ -1,6 +1,8 @@
 ﻿using System.Threading.RateLimiting;
 using BestOfHackerNews.Core.Implementations;
+using BestOfHackerNews.Core.Implementations.Config;
 using BestOfHackerNews.Core.Interfaces;
+using BestOfHackerNews.Core.Interfaces.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,10 +27,14 @@ public static class ServiceCollectionExtensions
         var bestStoriesRepository = new BestStoriesRepository();
 
         return services
-            .AddSingleton<IStoreBestStories>(bestStoriesRepository)
-            .AddSingleton<IProvideBestStories>(bestStoriesRepository)
+            .AddSingleton<IApiKeyValidator, ApiKeyValidator>()
+            .AddSingleton<IBestStoriesCollectorConfigProvider, BestStoriesCollectorConfigProvider>()
             .AddSingleton<ICollectBestStories, BestStoriesCollector>()
-            .AddSingleton<IApiKeyValidator, ApiKeyValidator>();
+            .AddSingleton<IHackerNewsItemRetrievalConfigProvider, HackerNewsItemRetrievalConfigProvider>()
+            .AddSingleton<IProcessBestStoriesToHackerNewsItems, BestStoriesToHackerNewsItemsProcessor>()
+            .AddSingleton<IProvideBestStories>(bestStoriesRepository)
+            .AddSingleton<IProvideBestStoriesAsHackerNewsItems, BestStoriesHackerNewsItemsProvider>()
+            .AddSingleton<IStoreBestStories>(bestStoriesRepository);
     }
 
     /// <summary>

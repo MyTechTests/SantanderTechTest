@@ -31,7 +31,7 @@ public static class BohnServiceHostConfigurator
     /// Configures an existing WebApplication to add support for this api
     /// </summary>
     /// <param name="app">The app to configure</param>
-    public static async Task ConfigureApplication(WebApplication app)
+    public static void ConfigureApplication(WebApplication app)
     {
         app.UseSwagger()
             .UseSwaggerUI()
@@ -46,6 +46,5 @@ public static class BohnServiceHostConfigurator
         }
 
         app.AddBohnGetEndpoint();
-        await app.BeginListeningToBohn();
     }
 }

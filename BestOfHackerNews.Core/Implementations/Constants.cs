@@ -3,6 +3,9 @@
 /// <summary>
 /// All constants used in the service
 /// </summary>
+/// <remarks>
+/// Values are public, so cannot be const as that can cause issues with differing assembly versions.  Using static readonly as it is essentially the same.
+/// </remarks>
 public static class Constants
 {
     /// <summary>
@@ -11,6 +14,9 @@ public static class Constants
     public static class Configuration
     {
         public static readonly string BestStoriesUri = "BestStoriesUri";
+        public static readonly string HttpTimeoutMs = "HttpTimeoutMs";
+        public static readonly string ItemUriFormatString = "ItemUriFormatString";
+        public static readonly string MaxItemIdUri = "MaxItemIdUri";
         public static readonly string NewsApiCheckIntervalInSeconds = "NewsApiCheckIntervalInSeconds";
         public static readonly string NewsApiRetryCount = "NewsApiRetryCount";
         public static readonly string NewsApiRetryDelayMs = "NewsApiRetryDelayMs";

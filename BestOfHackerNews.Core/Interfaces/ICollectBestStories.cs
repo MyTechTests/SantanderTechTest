@@ -5,5 +5,5 @@
 /// </summary>
 public interface ICollectBestStories
 {
-    Task BeginCollection();
+    Task Start();
 }

@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Flurl.Http.Testing;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 
@@ -22,11 +23,14 @@ public class BestStoriesEndpointTests
     }
 
     [TestMethod]
-    public async Task GetBestStories_When_Called_Immediatel_On_Startup_Returns_No_Content()
+    public async Task GetBestStories_When_Called_Immediately_On_Startup_Returns_No_Content()
     {
         // Arrange
         var key = Guid.NewGuid().ToString();
         Environment.SetEnvironmentVariable("ApiKeys:" + key, "test key");
+
+        var httpTest = new HttpTest();
+        httpTest.ForCallsTo("https://example.com/best-stories").RespondWith("[]");
 
         using var client = _factory.CreateClient();
         var request = new HttpRequestMessage(HttpMethod.Get, "/bestnstories/5");
