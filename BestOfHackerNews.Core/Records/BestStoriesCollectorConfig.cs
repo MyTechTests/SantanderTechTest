@@ -1,6 +1,9 @@
 ﻿namespace BestOfHackerNews.Core.Records;
 
-public record BestStoriesCollectorConfig
+/// <summary>
+/// Configuration for the BestStoriesCollector
+/// </summary>
+internal record BestStoriesCollectorConfig
 {
     public TimeSpan CheckIntervalInSeconds { get; set; }
 }

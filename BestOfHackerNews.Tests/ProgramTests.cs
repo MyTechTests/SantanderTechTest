@@ -8,7 +8,7 @@ namespace BestOfHackerNews.Tests;
 [TestClass]
 public class BestStoriesEndpointTests
 {
-    private static WebApplicationFactory<Program> _factory;
+    private static WebApplicationFactory<Program> _factory = null!;
 
     [ClassInitialize]
     public static void ClassInitialize(TestContext _)

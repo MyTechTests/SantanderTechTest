@@ -33,7 +33,7 @@ public class BestStoriesHackerNewsItemsProviderTests
 
         configProvider.ReadConfig().Returns(config);
 
-        var bestStoryIds = new int[] { 1 };
+        var bestStoryIds = new [] { 1 };
         var bestStoriesJson = JsonConvert.SerializeObject(bestStoryIds);
         var hackerNewsItemJson = JsonConvert.SerializeObject(new HackerNewsItem());
         var httpTest = new HttpTest();
@@ -52,7 +52,7 @@ public class BestStoriesHackerNewsItemsProviderTests
     }
 
     [TestMethod]
-    public async Task GetBestStories_Should_Ignore_Deleted_Items_And_Follow_Kids()
+    public async Task GetBestStories_Should_Ignore_Deleted()
     {
         // Arrange
         var bestStoriesToHackerNewsItemsProcessor = Substitute.For<IProcessBestStoriesToHackerNewsItems>();
@@ -70,16 +70,15 @@ public class BestStoriesHackerNewsItemsProviderTests
 
         configProvider.ReadConfig().Returns(config);
 
-        var expected = new HackerNewsItem { id = 1, type = "story", kids = new[] { 10, 20, 30 }, descendants = 32 };
+        var expected = new HackerNewsItem { id = 1, type = "story", descendants = 32 };
 
-        var bestStoryIds = new int[] { 1, 2 };
+        var bestStoryIds = new [] { 1, 2 };
         var bestStoriesJson = JsonConvert.SerializeObject(bestStoryIds);
-        var hackerNewsItemJson = JsonConvert.SerializeObject(new HackerNewsItem { id = 1, type = "story", kids = new []{ 10, 20, 30 }, descendants = 32});
+        var hackerNewsItemJson = JsonConvert.SerializeObject(new HackerNewsItem { id = 1, type = "story", descendants = 32});
 
         var httpTest = new HttpTest();
         httpTest.ForCallsTo(config.BestStoriesUri).RespondWith(bestStoriesJson);
         httpTest.ForCallsTo(string.Format(config.ItemUriFormatString, "1")).RespondWith(hackerNewsItemJson);
-
 
         var provider = new BestStoriesHackerNewsItemsProvider(bestStoriesToHackerNewsItemsProcessor, storyStore, configProvider);
 

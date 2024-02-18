@@ -2,7 +2,10 @@
 
 namespace BestOfHackerNews.Core.Interfaces;
 
-public interface IProcessBestStoriesToHackerNewsItems
+/// <summary>
+/// Applies filtering, sorting and conversion of hackerNewsItems
+/// </summary>
+internal interface IProcessBestStoriesToHackerNewsItems
 {
-    Story[] Process(HackerNewsItem[] results);
+    Story[] Process(HackerNewsItem[] hackerNewsItems);
 }

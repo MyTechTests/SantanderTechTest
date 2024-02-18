@@ -1,6 +1,6 @@
 ﻿namespace BestOfHackerNews.Core.Records;
 
-public record HackerNewsItemRetrievalConfig
+internal record HackerNewsItemRetrievalConfig
 {
     private static readonly string MISSING = "MISSING";
 

@@ -19,7 +19,7 @@ public class BestStoriesCollectorConfigProviderTests
         };
 
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(inMemorySettings)
+            .AddInMemoryCollection(inMemorySettings!)
             .Build();
 
         var provider = new BestStoriesCollectorConfigProvider(configuration);
@@ -29,6 +29,6 @@ public class BestStoriesCollectorConfigProviderTests
 
         // Assert
         result.Should().NotBeNull();
-        result.CheckIntervalInSeconds.Should().Be(expectedInterval);
+        result!.CheckIntervalInSeconds.Should().Be(expectedInterval);
     }
 }

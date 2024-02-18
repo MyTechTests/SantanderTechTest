@@ -11,6 +11,11 @@ namespace BestOfHackerNews.Core.Extensions;
 /// </summary>
 public static class BohnApplicationBuilderExtensions //required prefix as this clashed with a microsoft class of the same name
 {
+    /// <summary>
+    /// Adds the api key checking middleware
+    /// </summary>
+    /// <param name="app">The application builder to configure</param>
+    /// <returns>The application builder</returns>
     public static IApplicationBuilder RequireApiKey(this IApplicationBuilder app)
     {
         return app.Use(CheckApiKey);

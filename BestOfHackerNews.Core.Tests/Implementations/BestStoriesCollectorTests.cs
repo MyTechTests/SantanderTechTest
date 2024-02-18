@@ -28,7 +28,7 @@ public class BestStoriesCollectorTests
         await collector.Start();
 
         // Assert
-        bestStoriesProvider.Received(1).GetBestStories();
+        await bestStoriesProvider.Received(1).GetBestStories();
     }
 
     [TestMethod]

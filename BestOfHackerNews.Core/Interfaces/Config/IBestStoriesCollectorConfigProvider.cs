@@ -2,7 +2,7 @@
 
 namespace BestOfHackerNews.Core.Interfaces.Config;
 
-public interface IBestStoriesCollectorConfigProvider
+internal interface IBestStoriesCollectorConfigProvider
 {
-    BestStoriesCollectorConfig ReadConfig();
+    BestStoriesCollectorConfig? ReadConfig();
 }

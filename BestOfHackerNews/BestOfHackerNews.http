@@ -1,6 +1,7 @@
-@BestOfHackerNews_HostAddress = http://localhost:5017
+@BestOfHackerNews_HostAddress = https://localhost:55002
 
-GET {{BestOfHackerNews_HostAddress}}/beststories/
+#Set an api key value to the environment of the running service before executing this sample call
+
+GET {{BestOfHackerNews_HostAddress}}/beststories/5
 Accept: application/json
-
-###
+X-API-Key: test

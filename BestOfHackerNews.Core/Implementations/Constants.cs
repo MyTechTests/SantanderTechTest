@@ -6,7 +6,7 @@
 /// <remarks>
 /// Values are public, so cannot be const as that can cause issues with differing assembly versions.  Using static readonly as it is essentially the same.
 /// </remarks>
-public static class Constants
+internal static class Constants
 {
     /// <summary>
     /// All configuration constants

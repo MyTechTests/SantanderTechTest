@@ -2,9 +2,8 @@
 using BestOfHackerNews.Core.Interfaces;
 using BestOfHackerNews.Core.Records;
 using FluentAssertions;
-using Flurl.Http.Testing;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Serilog;
@@ -34,7 +33,7 @@ public class WebApplicationExtensionsTests
 
         // Assert
         result.Should().NotBeNull();
-        result.StatusCode.Should().Be(StatusCodes.Status406NotAcceptable);
+        result!.StatusCode.Should().Be(StatusCodes.Status406NotAcceptable);
         result.ProblemDetails.Detail.Should().Be(expectedDetail);
     }
 
@@ -59,7 +58,7 @@ public class WebApplicationExtensionsTests
 
         // Assert
         result.Should().NotBeNull();
-        result.StatusCode.Should().Be(StatusCodes.Status200OK);
+        result!.StatusCode.Should().Be(StatusCodes.Status200OK);
     }
 
     [TestMethod]
@@ -83,7 +82,7 @@ public class WebApplicationExtensionsTests
 
         // Assert
         result.Should().NotBeNull();
-        result.StatusCode.Should().Be(StatusCodes.Status204NoContent);
+        result!.StatusCode.Should().Be(StatusCodes.Status204NoContent);
     }
 
     [TestMethod]
@@ -94,7 +93,7 @@ public class WebApplicationExtensionsTests
         var response = Substitute.For<HttpResponse>();
         var context = new DefaultHttpContext();
         var bestStoriesProvider = Substitute.For<IProvideBestStories>();
-        var someErrorMessage = "Some error message";
+        const string someErrorMessage = "Some error message";
         var expectedException = new Exception(someErrorMessage);
         var logger = Substitute.For<ILogger>();
 
@@ -112,7 +111,7 @@ public class WebApplicationExtensionsTests
 
         // Assert
         result.Should().NotBeNull();
-        result.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
+        result!.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
         result.ProblemDetails.Detail.Should().Be(someErrorMessage);
     }
 }

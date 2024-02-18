@@ -26,6 +26,7 @@ internal class BestStoriesHackerNewsItemsProvider : IProvideBestStoriesAsHackerN
     {
         _bestStoriesToHackerNewsItemsProcessor = bestStoriesToHackerNewsItemsProcessor;
         _storyStore = storyStore;
+
         _hackerNewsItemsProcessorConfig = configProvider.ReadConfig();
         _retryPolicy = BuildHttpRetryPolicy();
     }
@@ -43,7 +44,7 @@ internal class BestStoriesHackerNewsItemsProvider : IProvideBestStoriesAsHackerN
         return buildHttpRetryPolicy;
     }
 
-    private async Task<T> GetFromUrl<T>(string uri)
+    private async Task<T?> GetFromUrl<T>(string uri)
     {
         var result = await _retryPolicy.ExecuteAndCaptureAsync(() =>
             uri.WithTimeout(_hackerNewsItemsProcessorConfig.HttpTimeout).GetJsonAsync<T>());
@@ -95,6 +96,6 @@ internal class BestStoriesHackerNewsItemsProvider : IProvideBestStoriesAsHackerN
     {
         var processed = _bestStoriesToHackerNewsItemsProcessor.Process(hackerNewsItemBag.ToArray());
 
-        _storyStore.Update(processed);
+        _storyStore.ReplaceAll(processed);
     }
 }

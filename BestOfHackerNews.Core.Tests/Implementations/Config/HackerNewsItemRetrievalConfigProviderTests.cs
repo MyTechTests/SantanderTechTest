@@ -35,7 +35,7 @@ public class HackerNewsItemRetrievalConfigProviderTests
         };
 
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(inMemorySettings)
+            .AddInMemoryCollection(inMemorySettings!)
             .Build();
 
         var provider = new HackerNewsItemRetrievalConfigProvider(configuration);

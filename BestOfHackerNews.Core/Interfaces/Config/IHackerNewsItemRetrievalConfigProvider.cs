@@ -2,7 +2,7 @@
 
 namespace BestOfHackerNews.Core.Interfaces.Config;
 
-public interface IHackerNewsItemRetrievalConfigProvider
+internal interface IHackerNewsItemRetrievalConfigProvider
 {
     HackerNewsItemRetrievalConfig ReadConfig();
 }

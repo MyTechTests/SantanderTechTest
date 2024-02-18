@@ -34,7 +34,7 @@ public class BestStoriesRepositoryTests
         };
 
         // Act
-        repository.Update(stories);
+        repository.ReplaceAll(stories);
         var updatedStories = repository.GetBestStories(3);
 
         // Assert
@@ -56,7 +56,7 @@ public class BestStoriesRepositoryTests
             new Story { title = "Story 2", score = 20 },
             new Story { title = "Story 3", score = 15 }
         };
-        repository.Update(stories);
+        repository.ReplaceAll(stories);
 
         // Act
         var requestedStories = repository.GetBestStories(2);

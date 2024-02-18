@@ -13,7 +13,7 @@ var app = builder.Build();
 
 BohnServiceHostConfigurator.ConfigureApplication(app);
 
-await app.BeginListeningToBohn();
+await app.BeginListeningToBohn(); //Main entry point - start here if reading how this works
 
 Log.Information("Service started at {@time}", DateTime.UtcNow);
 

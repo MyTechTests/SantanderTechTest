@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace BestOfHackerNews.Core.Records;
+
+/// <summary>
 /// Represents an item from Hacker News.
 /// </summary>
 public record HackerNewsItem
@@ -16,22 +18,22 @@ public record HackerNewsItem
     /// <summary>
     /// Gets or sets the type of item. One of "job", "story", "comment", "poll", or "pollopt".
     /// </summary>
-    public string type { get; set; }
+    public string? type { get; set; }
 
     /// <summary>
     /// Gets or sets the username of the item's author.
     /// </summary>
-    public string by { get; set; }
+    public string? by { get; set; }
 
     /// <summary>
     /// Gets or sets the creation date of the item, in Unix Time.
     /// </summary>
-    public long time { get; set; } //As we do not need to perform processing on this, we do not need to parse it
+    public long time { get; set; }
 
     /// <summary>
     /// Gets or sets the comment, story, or poll text. HTML.
     /// </summary>
-    public string text { get; set; }
+    public string? text { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the item is dead.
@@ -51,12 +53,12 @@ public record HackerNewsItem
     /// <summary>
     /// Gets or sets the ids of the item's comments, in ranked display order.
     /// </summary>
-    public int[] kids { get; set; }
+    public int[]? kids { get; set; }
 
     /// <summary>
     /// Gets or sets the URL of the story.
     /// </summary>
-    public string url { get; set; }
+    public string? url { get; set; }
 
     /// <summary>
     /// Gets or sets the story's score, or the votes for a pollopt.
@@ -66,12 +68,12 @@ public record HackerNewsItem
     /// <summary>
     /// Gets or sets the title of the story, poll, or job. HTML.
     /// </summary>
-    public string title { get; set; }
+    public string? title { get; set; }
 
     /// <summary>
     /// Gets or sets a list of related pollopts, in display order.
     /// </summary>
-    public int[] parts { get; set; }
+    public int[]? parts { get; set; }
 
     /// <summary>
     /// Gets or sets the total comment count for stories or polls.

@@ -8,20 +8,12 @@ namespace BestOfHackerNews.Core.Implementations.Config;
 /// <summary>
 /// Gets an object that contains settings required for the Best Stories Collector
 /// </summary>
-internal class BestStoriesCollectorConfigProvider : IBestStoriesCollectorConfigProvider
+internal class BestStoriesCollectorConfigProvider(IConfiguration config) : IBestStoriesCollectorConfigProvider
 {
-    private const string MISSING = "MISSING";
-    private readonly IConfiguration _config;
-
-    public BestStoriesCollectorConfigProvider(IConfiguration config)
-    {
-        _config = config;
-    }
-
-    public BestStoriesCollectorConfig ReadConfig()
+    public BestStoriesCollectorConfig? ReadConfig()
     {
         Log.Information("Getting configuration settings for Best stories collector...");
-        var configurationSection = _config.GetSection(Constants.Configuration.SectionName);
+        var configurationSection = config.GetSection(Constants.Configuration.SectionName);
         var bestStoriesCollectorConfig = new BestStoriesCollectorConfig
         {
             CheckIntervalInSeconds = TimeSpan.FromSeconds(configurationSection.GetValue<int>(Constants.Configuration.NewsApiCheckIntervalInSeconds))

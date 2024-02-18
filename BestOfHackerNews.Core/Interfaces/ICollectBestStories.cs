@@ -3,7 +3,7 @@
 /// <summary>
 /// Monitors the hacker news api and stores updates
 /// </summary>
-public interface ICollectBestStories
+internal interface ICollectBestStories
 {
     Task Start();
 }

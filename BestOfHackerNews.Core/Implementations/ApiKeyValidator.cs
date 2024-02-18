@@ -24,7 +24,12 @@ public class ApiKeyValidator : IApiKeyValidator
             .ToDictionary(x => x.Key, x => x.Value);
     }
 
-    public (bool success, int httpStatusCode, string httpStatusMessage) Validate(string apiKey)
+    /// <summary>
+    /// Validates an API Key and returns a detailed result
+    /// </summary>
+    /// <param name="apiKey">The key to be tested</param>
+    /// <returns>success indicator, the http status code and the status message from the http response</returns>
+    public (bool success, int httpStatusCode, string httpStatusMessage) Validate(string? apiKey)
     {
         if (string.IsNullOrWhiteSpace(apiKey))
         {

@@ -8,20 +8,14 @@ namespace BestOfHackerNews.Core.Implementations.Config;
 /// <summary>
 /// Gets an object that contains settings required for the Best Stories Collector
 /// </summary>
-internal class HackerNewsItemRetrievalConfigProvider : IHackerNewsItemRetrievalConfigProvider
+internal class HackerNewsItemRetrievalConfigProvider(IConfiguration config) : IHackerNewsItemRetrievalConfigProvider
 {
     private const string MISSING = "MISSING";
-    private readonly IConfiguration _config;
-
-    public HackerNewsItemRetrievalConfigProvider(IConfiguration config)
-    {
-        _config = config;
-    }
 
     public HackerNewsItemRetrievalConfig ReadConfig()
     {
         Log.Information("Getting configuration settings for Best stories collector...");
-        var configurationSection = _config.GetSection(Constants.Configuration.SectionName);
+        var configurationSection = config.GetSection(Constants.Configuration.SectionName);
         var bestStoriesCollectorConfig = new HackerNewsItemRetrievalConfig
         {
             BestStoriesUri = configurationSection.GetValue<string>(Constants.Configuration.BestStoriesUri) ?? MISSING,

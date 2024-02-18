@@ -5,9 +5,9 @@ namespace BestOfHackerNews.Core.Implementations;
 
 internal class BestStoriesToHackerNewsItemsProcessor : IProcessBestStoriesToHackerNewsItems
 {
-    public Story[] Process(HackerNewsItem[] results)
+    public Story[] Process(HackerNewsItem[] hackerNewsItems)
     {
-        var stories = results
+        var stories = hackerNewsItems
             .Where(o => !ReferenceEquals(o, null))
             .Select(ConvertToStory)
             .OrderByDescending(o => o.score)

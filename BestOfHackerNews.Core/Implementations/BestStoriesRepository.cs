@@ -21,8 +21,8 @@ internal class BestStoriesRepository : IProvideBestStories, IStoreBestStories
         return _bestStories.Take(storyCount).ToArray();
     }
 
-    public void Update(Story[] stories)
+    public void ReplaceAll(Story[] stories)
     {
-        _bestStories = stories.OrderByDescending(o => o.score).ToArray();
+        _bestStories = stories;
     }
 }

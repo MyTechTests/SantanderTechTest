@@ -1,6 +1,9 @@
 ﻿namespace BestOfHackerNews.Core.Interfaces;
 
-public interface IProvideBestStoriesAsHackerNewsItems
+/// <summary>
+/// Provides the best stories from the hacker news site
+/// </summary>
+internal interface IProvideBestStoriesAsHackerNewsItems
 {
     Task GetBestStories();
 }
