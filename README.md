@@ -40,9 +40,10 @@ The reference to Microsoft.AspNetCore in the BestOfHackerNews.Core library is de
 
 ## Further enhancements
 Make the "Each client as identified by their host header is limited to 5 requests every 10 seconds" restriction configurable
-Add Sentry for statistics
-Add Graph Ql to support a more efficient data source to callers
-Output statistics to Prometheus and create a Grafana page for monitoring
+Add Sentry for statistics https://docs.sentry.io/platforms/dotnet/guides/aspnetcore/
+Add Graph Ql to support a more efficient data source to callers https://graphql.org/code/#c-net
+Output statistics to Prometheus, support open telemetry and create a Grafana page for monitoring https://learn.microsoft.com/en-us/dotnet/core/diagnostics/metrics-collection
+Add healthchecks and healthcheck ui as per https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
 
 ## Restrictions
 This service will support a large number of requests from multiple sources as identified by the host header in each request.  It will limit the number of requests for an individual caller to prevent DoS attack.
