@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestOfHackerNews.Core", "Be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestOfHackerNews.Tests", "BestOfHackerNews.Tests\BestOfHackerNews.Tests.csproj", "{C80D6276-F5CC-4949-B954-D91C1F76C174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestOfHackerNews.Core.Tests", "BestOfHackerNews.Core.Tests\BestOfHackerNews.Core.Tests.csproj", "{82992A93-0218-4C3E-BDF7-10782A0635D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestOfHackerNews.Core.Tests", "BestOfHackerNews.Core.Tests\BestOfHackerNews.Core.Tests.csproj", "{82992A93-0218-4C3E-BDF7-10782A0635D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C45A409E-6A95-4FC3-B59F-075F97BB3CB5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Specification.pdf = ..\..\..\Downloads\Specification.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
