@@ -36,7 +36,7 @@ The api will allow any number of clients to request the top n stories, but it wi
 - Where the website states "Want to know the total number of comments on an article? Traverse the tree and count", it also states that "descendants	In the case of stories or polls, the total comment count.".  Assuming the count for stories does not require traversal of the tree and excludes deleted comments.
 
 ## Known Issues
-The reference to Microsoft.AspNetCore in the BestOfHackerNews.Core library is deprecated but used by other Microsoft packages.  Assumption here is that the packages using it will be updated in the future
+The reference to Microsoft.AspNetCore in the BestOfHackerNews.Core library is deprecated but used by other Microsoft packages.  Assumption here is that the packages using it will be updated in the future.  While this shows in visual studio as a warning, it does not have an impact on the function of the application at this time.
 
 ## Further enhancements
 - Make the "Each client as identified by their host header is limited to 5 requests every 10 seconds" restriction configurable
