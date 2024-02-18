@@ -9,7 +9,7 @@ namespace BestOfHackerNews.Core.Tests.Implementations;
 public class BestStoriesToHackerNewsItemsProcessorTests
 {
     [TestMethod]
-    public void Process_Should_Convert_HackerNewsItems_To_Stories()
+    public void Process_Should_Convert_HackerNewsItems_To_Stories_In_Descending_Order_Of_Score()
     {
         // Arrange
         var processor = new BestStoriesToHackerNewsItemsProcessor();

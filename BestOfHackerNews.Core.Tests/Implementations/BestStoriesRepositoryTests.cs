@@ -22,30 +22,6 @@ public class BestStoriesRepositoryTests
     }
 
     [TestMethod]
-    public void Update_Should_Update_Best_Stories_According_To_Score()
-    {
-        // Arrange
-        var repository = new BestStoriesRepository();
-        var stories = new[]
-        {
-            new Story { title = "Story 1", score = 10 },
-            new Story { title = "Story 2", score = 20 },
-            new Story { title = "Story 3", score = 15 }
-        };
-
-        // Act
-        repository.ReplaceAll(stories);
-        var updatedStories = repository.GetBestStories(3);
-
-        // Assert
-        Assert.IsNotNull(updatedStories);
-        Assert.AreEqual(3, updatedStories.Length);
-        Assert.AreEqual(20, updatedStories[0].score);
-        Assert.AreEqual(15, updatedStories[1].score);
-        Assert.AreEqual(10, updatedStories[2].score);
-    }
-
-    [TestMethod]
     public void GetBestStories_Should_Return_Requested_Number_Of_Stories()
     {
         // Arrange
