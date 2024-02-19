@@ -25,6 +25,8 @@ This can alternatively be set by adding it to the appSettings.json file. e.g.:
     "test": "this is a test key"
   }
 
+The api key that would be expected to be in the http header for the above examples would be "test" i.e. the left hand side value.
+
 ## Overload protection
 The api will allow any number of clients to request the top n stories, but it will protect against the same client attempting a DoS attack.  Each client as identified by their host header is limited to 5 requests every 10 seconds (Can be set in config).
 
